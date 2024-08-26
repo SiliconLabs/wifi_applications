@@ -1,0 +1,242 @@
+.bg-1-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bg-2-icon,
+.frame-child,
+.frame-item {
+  position: absolute;
+  top: 112px;
+  left: 0;
+  width: 1920px;
+}
+.bg-2-icon {
+  height: 1116px;
+  object-fit: cover;
+  display: none;
+}
+.frame-child,
+.frame-item {
+  height: 1080px;
+}
+.frame-child {
+  background: linear-gradient(108.66deg, rgba(19, 14, 255, 0.19), #fff);
+}
+.frame-item {
+  background-color: var(--color-gray-200);
+}
+.bg-1-parent,
+.cloud-networking-with-people-f-icon {
+  height: 1440px;
+  width: 1920px;
+  position: relative;
+  display: none;
+  max-width: 100%;
+}
+.cloud-networking-with-people-f-icon {
+  height: 1085.1px;
+  object-fit: cover;
+  z-index: 0;
+}
+.inner-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(63, 81, 177, 0.8),
+    rgba(90, 85, 174, 0.8) 13%,
+    rgba(123, 95, 172, 0.8) 25%,
+    rgba(143, 106, 174, 0.8) 38%,
+    rgba(168, 106, 164, 0.8) 50%,
+    rgba(204, 107, 142, 0.8) 62%,
+    rgba(241, 130, 113, 0.8) 75%,
+    rgba(243, 164, 105, 0.8) 87%,
+    rgba(247, 201, 120, 0.8)
+  );
+  z-index: 1;
+}
+.inner-overlay,
+.inner-overlay-parent,
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.overlay {
+  background-color: var(--color-gray-200);
+  z-index: 2;
+}
+.inner-overlay-parent {
+  margin: 0 !important;
+  right: 0;
+}
+.log-in-to {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-weight: 100;
+  font-family: inherit;
+  z-index: 3;
+}
+.log-in-to-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 5px;
+}
+.silicon-labs {
+  margin: 0;
+  position: relative;
+  font-size: 48px;
+  font-weight: 500;
+  font-family: inherit;
+  z-index: 3;
+}
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 11px;
+  max-width: 100%;
+}
+.enter-your-credentials {
+  position: relative;
+  font-size: var(--display-xs-regular-size);
+  line-height: 24px;
+  font-family: var(--text-lg-medium);
+  color: var(--colors-gray-400);
+  z-index: 3;
+}
+.bg,
+.bg-inner,
+.login-header-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.login-header-parent {
+  gap: 45px;
+}
+.bg,
+.bg-inner {
+  padding: 424px 0 0;
+  box-sizing: border-box;
+}
+.bg {
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 129px 5.1px 301px;
+  position: relative;
+  background-image: url(/public/cloudnetworkingwithpeoplefilesdroppingthroughmobilephones@2x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  flex-shrink: 0;
+  gap: 20px;
+  text-align: left;
+  font-size: 64px;
+  color: var(--white-100);
+  font-family: var(--font-commissioner);
+}
+.pel,
+.pro {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: 900;
+}
+.pel {
+  left: 63px;
+  font-weight: 300;
+  color: var(--white-100);
+}
+.logo,
+.vector-icon {
+  height: 43px;
+  width: 114px;
+  position: relative;
+  display: none;
+}
+.vector-icon {
+  height: 36px;
+  width: 154.6px;
+}
+.login {
+  width: 100%;
+  position: relative;
+  background: linear-gradient(90deg, #43e97b, #38f9d7);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  font-size: var(--font-size-17xl);
+  color: #204be6;
+  font-family: var(--font-fira-sans-condensed);
+}
+@media screen and (max-width: 1350px) {
+  .bg {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .bg {
+    padding-left: 150px;
+    padding-right: 64px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 800px) {
+  .log-in-to {
+    font-size: 51px;
+  }
+  .silicon-labs {
+    font-size: var(--font-size-19xl);
+  }
+  .bg,
+  .bg-inner {
+    box-sizing: border-box;
+  }
+  .bg-inner {
+    padding-top: 276px;
+  }
+  .bg {
+    padding-left: 75px;
+    padding-right: var(--padding-13xl);
+  }
+  .pel,
+  .pro {
+    font-size: var(--font-size-10xl);
+  }
+}
+@media screen and (max-width: 450px) {
+  .log-in-to {
+    font-size: var(--font-size-19xl);
+  }
+  .silicon-labs {
+    font-size: var(--font-size-10xl);
+  }
+  .enter-your-credentials {
+    font-size: 19px;
+    line-height: 19px;
+  }
+  .login-header-parent {
+    gap: var(--gap-3xl);
+  }
+  .pel,
+  .pro {
+    font-size: var(--font-size-3xl);
+  }
+}

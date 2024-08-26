@@ -1,0 +1,40 @@
+@import '../../../styles/variables.scss';
+#root {
+  height: 100vh !important; /* Set height to 100% of viewport height */
+  width: 100vw !important;
+}
+
+.button-login {
+  display: grid !important;
+  justify-items: center;
+}
+.content {
+  background-color: $white-gray;
+  padding-bottom: 1.25rem;
+}
+
+@media (min-width: 1537px) and (max-width: 1920px) {
+  .content {
+    padding-left: 240px;
+    padding-right: 240px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .content {
+    padding-left: 240px;
+    padding-right: 240px;
+  }
+}
+.customText {
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  align-items: flex-end;
+  color: #000000;
+  padding-top: 12px;
+  margin-bottom: -10px;
+}
+.nameText {
+  color: #2f74eb;
+}

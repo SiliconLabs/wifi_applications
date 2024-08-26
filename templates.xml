@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?><model:MDescriptors xmlns:model="http://www.silabs.com/ss/Studio.ecore">
+  <descriptors name="wifi_asset_tracking" label="Wi-Fi - Asset Tracking"
+               description="This application demonstrates how to configure the SiWG917 module as an Azure device endpoint and how to establish a connection with Azure IoT Hub. This project contains Development of a Wi-Fi tracker application on the SiWG917-PK6031A that will be connected to Wi-Fi access point using WLAN APIs provided by the WiSeConnect 3 SDK. Communicates with Azure IoT Hub based on the configurations provided by the developer through the JSON messages containig the following fields.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="solutionReferenceId" value="wifi_asset_tracking.SimplicityStudio.wifi_asset_tracking.slcp"/>
+    <properties key="projectFilePaths" value="wifi_asset_tracking/SimplicityStudio/wifi_asset_tracking.slcp"/>
+    <properties key="readmeFiles" value="wifi_asset_tracking/README.md"/>
+    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*si917.* .*siwg917m111mgtba.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide simplicity-ide visual-studio-code"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Wifi Examples"/>
+    <properties key="quality" value="EXPERIMENTAL"/>
+    <properties key="filters" value="Capability|SoC MCU|32-bit\ MCU Project\ Difficulty|Advanced Wireless\ Technology|Wifi"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+</model:MDescriptors>  

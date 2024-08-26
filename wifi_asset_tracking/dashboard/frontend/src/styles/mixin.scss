@@ -1,0 +1,33 @@
+@import './variables.scss';
+
+@mixin primary-button {
+  background-color: $primary-btn-bg;
+  color: $white;
+  border-radius: $primary-btn-radius;
+  padding: $primary-btn-padding;
+  outline: none;
+  border: none;
+}
+
+@mixin scrollbars($size, $border-radius, $background-color) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+    display: block !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $background-color;
+    border-radius: $border-radius;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-left: 0 !important;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $background-color;
+  }
+}

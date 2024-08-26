@@ -1,0 +1,12 @@
+const API_BASE_URL = 'http://localhost:3005/api/v1';
+export const SOCKET_URL = 'http://localhost:3005/';
+export const API_TEMPERATURE = `${API_BASE_URL}/dashboard/temperature`;
+export const API_HUMIDITY = `${API_BASE_URL}/dashboard/humidity`;
+export const API_GPS = `${API_BASE_URL}/dashboard/gps`;
+export const API_WIFI = `${API_BASE_URL}/dashboard/wifi`;
+export const API_ACCELERO = `${API_BASE_URL}/dashboard/accelero`;
+export const API_GYRO = `${API_BASE_URL}/dashboard/gyro`;
+export const API_GPX = `${API_BASE_URL}/dashboard/download-gpx`;
+export const API_CSV = `${API_BASE_URL}/dashboard/generate-csv`;
+export const API_LOGOUT = `${API_BASE_URL}/auth/logout`;
+export const API_LOGIN = `${API_BASE_URL}/auth/callback`;

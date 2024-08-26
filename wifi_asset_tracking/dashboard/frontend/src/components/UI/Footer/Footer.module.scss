@@ -1,0 +1,52 @@
+@import '../../../styles/variables.scss';
+
+.footer {
+  background-color: $bg-primary;
+  color: $alpha-dark-65;
+  width: 100%;
+  padding: $spacing-sm;
+  font-size: $display-6;
+  font-weight: $font-weight-medium;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #dee2e6;
+}
+
+@media (min-width: 1537px) and (max-width: 1920px) {
+  .footer {
+    padding-right: 240px;
+    padding-left: 240px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer {
+    padding-right: 240px;
+    padding-left: 240px;
+  }
+}
+
+.centerContent div {
+  display: flex;
+  align-items: center;
+  /* Ensure the span content is aligned */
+}
+
+.arrowlogo {
+  height: 32px;
+  mix-blend-mode: exclusion;
+  margin-right: 10px;
+}
+
+.eilogo {
+  height: 32px;
+}
+
+.verticalbar {
+  height: 26px;
+  /* Height of the bar */
+  margin: 10px;
+  /* Center the bar horizontally */
+  border-left: 1.5px solid #959292;
+}

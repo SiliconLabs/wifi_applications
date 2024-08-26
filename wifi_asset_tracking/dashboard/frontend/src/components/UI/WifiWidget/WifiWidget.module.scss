@@ -1,0 +1,91 @@
+@import '../../../styles/variables.scss';
+
+.card {
+  background-color: $white;
+  border: 1px solid $light-grey;
+  border-radius: $radius-llg;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: $spacing-2xl;
+  height: auto;
+  width: auto;
+}
+
+.cardtitle {
+  align-items: center;
+  font-size: $spacing-4xl;
+  color: $card-title; /* Darker text color */
+}
+.cardvalue {
+  display: block;
+  align-items: center;
+  font-size: $spacing-4xl;
+  color: $card-title;
+  font-weight: $font-weight-bold;
+}
+.cardname {
+  align-items: center;
+  font-size: $spacing-4xl;
+  font-weight: $font-weight-medium;
+  color: $card-title;
+}
+.cardtitlenew {
+  align-items: center;
+  padding-top: 2dvh;
+  font-size: $spacing-4xl;
+  color: $card-title;
+  font-weight: $font-weight-bold;
+}
+
+.cardtext {
+  align-items: center;
+  color: $card-text;
+  font-size: $spacing-3xl;
+}
+.cardsmalltext {
+  margin-top: 4rem;
+  color: $card-text;
+  font-size: 0.825rem;
+}
+.cardPadding {
+  margin-bottom: 5.25rem;
+}
+@media screen and (min-width: 768px) and (max-width: 1720px) {
+  .cardtitle {
+    font-size: $spacing-2xl;
+    color: $card-title; /* Darker text color */
+  }
+  .cardvalue {
+    font-size: $spacing-2xl;
+    color: $card-title;
+    font-weight: $font-weight-bold;
+    height: 60px; /* Darker text color */
+  }
+  .cardname {
+    font-size: $spacing-2xl;
+    font-weight: $font-weight-medium;
+    color: $card-title;
+  }
+  .cardtitlenew {
+    padding-top: 2dvh;
+    font-size: $spacing-2xl;
+    color: $card-title;
+    font-weight: $font-weight-bold;
+  }
+
+  .cardtext {
+    color: $card-text;
+    font-size: $spacing-2xl;
+  }
+  .cardsmalltext {
+    margin-top: 2rem;
+    color: $card-text;
+    font-size: 0.825rem;
+  }
+  .cardPadding {
+    margin-bottom: 3rem;
+  }
+}
