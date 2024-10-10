@@ -89,7 +89,7 @@ Firmware application consists of three logical modules:
 - Follow these document to setup your [Azure Cloud](https://github.com/SiliconLabs/wifi_applications/blob/main/wifi_asset_tracking/AZURE.md) and [Dashboard](https://github.com/SiliconLabs/wifi_applications/blob/main/wifi_asset_tracking/dashboard/README.md)
 - [Gecko SDK (GSDK) Version 4.4.3](https://github.com/SiliconLabs/gecko_sdk/releases/tag/v4.4.3)
 - [WiSeConnect 3.2.0 SDK](https://docs.silabs.com/wiseconnect/3.2.0/wiseconnect-developers-guide-developing-for-silabs-hosts/)
-- [Third Party Hardware Drivers Extension V3.0.0](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases/tag/v3.0.0)
+- [Third Party Hardware Drivers Extension V3.0.1](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases/tag/v3.0.0)
 
 ## Setup ##
 
