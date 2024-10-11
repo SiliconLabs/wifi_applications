@@ -13,7 +13,7 @@
 
 # Silicon Labs Wi-Fi Applications #
 
-[![Version Badge](https://img.shields.io/badge/-v1.0.1-green)](https://github.com/SiliconLabs/wifi_applications/releases)
+[![Version Badge](https://img.shields.io/badge/-v1.0.2-green)](https://github.com/SiliconLabs/wifi_applications/releases)
 [![GSDK Badge](https://img.shields.io/badge/GSDK-v4.4.3-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 [![WSDK Badge](https://img.shields.io/badge/WSDK-v3.2.0-green)](https://github.com/SiliconLabs/wiseconnect/releases)
 [![TPHD Version Badge](https://img.shields.io/badge/TPHD-v3.0.1+-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
