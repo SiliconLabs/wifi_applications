@@ -16,4 +16,21 @@
     <properties key="filters" value="Capability|SoC MCU|32-bit\ MCU Project\ Difficulty|Advanced Wireless\ Technology|Wifi"/>
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
   </descriptors>
+    <descriptors name="wifi_weather_display" label="Wi-Fi - Weather Display"
+               description="This project demonstrates a weather display powered by the SiWx917 microcontroller. It retrieves real-time weather data from the OpenWeatherMap API, synchronizes the current date and time using the NTP protocol, and monitors indoor temperature and humidity using the Si70xx sensor on the WSTK development kit.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="solutionReferenceId" value="wifi_weather_display.SimplicityStudio.wifi_weather_display.slcp"/>
+    <properties key="projectFilePaths" value="wifi_weather_display/SimplicityStudio/wifi_weather_display.slcp"/>
+    <properties key="readmeFiles" value="wifi_weather_display/README.md"/>
+    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*si917.* .*siwg917m111mgtba.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide simplicity-ide visual-studio-code"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Wifi Examples"/>
+    <properties key="quality" value="EXPERIMENTAL"/>
+    <properties key="filters" value="Capability|SoC MCU|32-bit\ MCU Project\ Difficulty|Advanced Wireless\ Technology|Wifi"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
 </model:MDescriptors>  

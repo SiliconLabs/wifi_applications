@@ -1,0 +1,172 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: wifi_weather_display
+label: Wi-Fi - Weather Display
+
+description: |
+  This project demonstrates a weather display powered by the SiWx917 microcontroller. It retrieves real-time weather data from the OpenWeatherMap API, synchronizes the current date and time using the NTP protocol, and monitors indoor temperature and humidity using the Si70xx sensor on the WSTK development kit.
+  
+category: Example|Wi-Fi
+
+filter:
+- name: "Project Difficulty"
+  value: ["Beginner"]
+- name: "Wireless Technology"
+  value: ["Wi-Fi"]
+  
+package: wifi
+
+quality: experimental
+
+readme:
+- path: ../README.md
+
+
+source:
+- path: ../src/app.c
+- path: ../src/main.c
+- path: ../src/cJSON_Utils.c
+  directory: "src"
+- path: ../src/cJSON.c
+  directory: "src"
+- path: ../src/display.c
+  directory: "src"
+- path: ../src/sensor.c
+  directory: "src"
+- path: ../src/sl_owmhttp.c
+  directory: "src"
+- path: ../src/sl_wd_ntp.c
+  directory: "src"
+- path: ../src/WiFi.c
+  directory: "src"
+
+include:
+  - path: ../inc
+    file_list:
+      - path: app.h
+  - path: ../inc
+    file_list:
+      - path: cJSON_Utils.h
+      - path: cJSON.h
+      - path: display.h
+      - path: sensor.h
+      - path: sl_owmhttp.h
+      - path: sl_wd_ntp.h
+      - path: WiFi.h
+      - path: cacert.pem.h
+    directory: "inc"  
+  
+sdk: {id: simplicity_sdk, version: 2024.6.2}
+
+
+component:
+- {from: wiseconnect3_sdk, id: SIWG917M111MGTBA}
+- {from: wiseconnect3_sdk, id: brd4338a}
+- instance: [i2c2]
+  from: wiseconnect3_sdk
+  id: i2c_instance
+- {from: wiseconnect3_sdk, id: memlcd_917}
+- {from: wiseconnect3_sdk, id: si917_memory_default_config}
+- {from: wiseconnect3_sdk, id: si91x_debug}
+- {from: wiseconnect3_sdk, id: sl_calendar}
+- {from: wiseconnect3_sdk, id: sl_si70xx}
+- instance: [btn0]
+  from: wiseconnect3_sdk
+  id: sl_si91x_button_917
+- {from: wiseconnect3_sdk, id: sl_si91x_mem_pool_buffers_with_quota}
+- {from: wiseconnect3_sdk, id: sl_ssi}
+- {from: wiseconnect3_sdk, id: sleeptimer_si91x}
+- {from: wiseconnect3_sdk, id: sntp}
+- {from: wiseconnect3_sdk, id: syscalls}
+- instance: [timer0]
+  from: wiseconnect3_sdk
+  id: ulp_timers_instance
+- {id: brd4002a}
+- {id: glib}
+
+
+other_file:
+- path: ../images/api_key.PNG
+  directory: "images"
+- path: ../images/api_subsrciption.PNG
+  directory: "images"
+- path: ../images/aqi.jpg
+  directory: "images"
+- path: ../images/btn0_instance.png
+  directory: "images"
+- path: ../images/button.png
+  directory: "images"
+- path: ../images/calendar.PNG
+  directory: "images"
+- path: ../images/certificate.PNG
+  directory: "images"
+- path: ../images/date.jpg
+  directory: "images"
+- path: ../images/GLIB.PNG
+  directory: "images"
+- path: ../images/glib_driver.PNG
+  directory: "images"
+- path: ../images/I2C.PNG
+  directory: "images"
+- path: ../images/I2C2.PNG
+  directory: "images"
+- path: ../images/ind_climate.jpg
+  directory: "images"
+- path: ../images/memlcd_spi.PNG
+  directory: "images"
+- path: ../images/out_climate.jpg
+  directory: "images"
+- path: ../images/si70xx.PNG
+  directory: "images"
+- path: ../images/sleep_timer_91x.PNG
+  directory: "images"
+- path: ../images/sntp_client.PNG
+  directory: "images"
+- path: ../images/ssi.PNG
+  directory: "images"
+- path: ../images/subscribe_api_weather.PNG
+  directory: "images"
+- path: ../images/subsrcibe_api_AQI.PNG
+  directory: "images"
+- path: ../images/system_overview.png
+  directory: "images"
+- path: ../images/tera_term.PNG
+  directory: "images"
+- path: ../images/time.jpg
+  directory: "images"
+- path: ../images/timer.PNG
+  directory: "images"
+- path: ../images/timer0_instance.PNG
+  directory: "images"
+- path: ../images/w_report.jpg
+  directory: "images"
+
+  
+define:
+- {name: SL_SI91X_PRINT_DBG_LOG}
+
+requires:
+- {name: sl_system}
+- {name: http_client}
+- {name: network_manager}
+- {name: basic_network_config_manager}
+- {name: wiseconnect3_common}
+- {name: wifi}
+- {name: sl_si91x_wireless}
+- {name: sl_si91x_internal_stack}
+- {name: wifi_resources}
+- {name: freertos}
+- {name: slist}
+- {name: device_needs_ram_execution}
+
+configuration:
+- {name: SL_BOARD_ENABLE_VCOM, value: '1'}
+
+ui_hints:
+  highlight:
+  - {path: README.md, focus: true}
+
+sdk_extension:
+- {id: wiseconnect3_sdk, version: 3.3.4}
+
+post_build: 
+  path: wifi_weather_display.slpb
