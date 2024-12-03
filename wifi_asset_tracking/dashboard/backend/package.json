@@ -44,7 +44,7 @@
     "helmet": "^7.1.0",
     "husky": "^9.0.11",
     "jwk-to-pem": "^2.0.5",
-    "mongoose": "^8.3.3",
+    "mongoose": "^8.8.3",
     "nest-winston": "^1.9.4",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
