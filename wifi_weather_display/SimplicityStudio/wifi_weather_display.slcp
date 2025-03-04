@@ -2,24 +2,21 @@
 project_name: wifi_weather_display
 label: Wi-Fi - Weather Display
 
+package: Wifi
+category: Wifi Examples
+quality: experimental
+
 description: |
   This project demonstrates a weather display powered by the SiWx917 microcontroller. It retrieves real-time weather data from the OpenWeatherMap API, synchronizes the current date and time using the NTP protocol, and monitors indoor temperature and humidity using the Si70xx sensor on the WSTK development kit.
-  
-category: Example|Wi-Fi
 
 filter:
 - name: "Project Difficulty"
   value: ["Beginner"]
 - name: "Wireless Technology"
   value: ["Wi-Fi"]
-  
-package: wifi
-
-quality: experimental
 
 readme:
 - path: ../README.md
-
 
 source:
 - path: ../src/app.c
@@ -30,6 +27,8 @@ source:
   directory: "src"
 - path: ../src/display.c
   directory: "src"
+  condition:
+  - brd4338a
 - path: ../src/sensor.c
   directory: "src"
 - path: ../src/sl_owmhttp.c
@@ -48,6 +47,8 @@ include:
       - path: cJSON_Utils.h
       - path: cJSON.h
       - path: display.h
+        condition:
+        - brd4338a
       - path: sensor.h
       - path: sl_owmhttp.h
       - path: sl_wd_ntp.h
@@ -55,39 +56,50 @@ include:
       - path: cacert.pem.h
     directory: "inc"  
   
-sdk: {id: simplicity_sdk, version: 2024.6.2}
-
+sdk: {id: simplicity_sdk, version: 2024.12.0}
 
 component:
-- {from: wiseconnect3_sdk, id: SIWG917M111MGTBA}
-- {from: wiseconnect3_sdk, id: brd4338a}
 - instance: [i2c2]
   from: wiseconnect3_sdk
   id: i2c_instance
-- {from: wiseconnect3_sdk, id: memlcd_917}
-- {from: wiseconnect3_sdk, id: si917_memory_default_config}
-- {from: wiseconnect3_sdk, id: si91x_debug}
-- {from: wiseconnect3_sdk, id: sl_calendar}
-- {from: wiseconnect3_sdk, id: sl_si70xx}
+- id: memlcd_917
+  from: wiseconnect3_sdk
+  condition:
+  - brd4338a
+- id: si917_memory_default_config
+  from: wiseconnect3_sdk
+- id: si91x_debug
+  from: wiseconnect3_sdk
+- id: sl_calendar
+  from: wiseconnect3_sdk
+- id: sl_si70xx
+  from: wiseconnect3_sdk
 - instance: [btn0]
   from: wiseconnect3_sdk
   id: sl_si91x_button_917
-- {from: wiseconnect3_sdk, id: sl_si91x_mem_pool_buffers_with_quota}
-- {from: wiseconnect3_sdk, id: sl_ssi}
-- {from: wiseconnect3_sdk, id: sleeptimer_si91x}
-- {from: wiseconnect3_sdk, id: sntp}
-- {from: wiseconnect3_sdk, id: syscalls}
+- id: sl_si91x_mem_pool_buffers_with_quota
+  from: wiseconnect3_sdk
+- id: sl_ssi
+  from: wiseconnect3_sdk
+- id: sleeptimer_si91x
+  from: wiseconnect3_sdk
+- id: sntp
+  from: wiseconnect3_sdk
+- id: syscalls
+  from: wiseconnect3_sdk
 - instance: [timer0]
   from: wiseconnect3_sdk
   id: ulp_timers_instance
-- {id: brd4002a}
-- {id: glib}
-
+- id: glib
+  condition:
+  - brd4338a
 
 other_file:
-- path: ../images/api_key.PNG
+- path: ../images/add_macro.png
   directory: "images"
-- path: ../images/api_subsrciption.PNG
+- path: ../images/api_key.png
+  directory: "images"
+- path: ../images/api_subsrciption.png
   directory: "images"
 - path: ../images/aqi.jpg
   directory: "images"
@@ -95,55 +107,63 @@ other_file:
   directory: "images"
 - path: ../images/button.png
   directory: "images"
-- path: ../images/calendar.PNG
+- path: ../images/calendar.png
   directory: "images"
-- path: ../images/certificate.PNG
+- path: ../images/certificate.png
+  directory: "images"
+- path: ../images/create_project.png
   directory: "images"
 - path: ../images/date.jpg
   directory: "images"
-- path: ../images/GLIB.PNG
+- path: ../images/GLIB.png
   directory: "images"
-- path: ../images/glib_driver.PNG
+- path: ../images/glib_driver.png
   directory: "images"
-- path: ../images/I2C.PNG
+- path: ../images/I2C.png
   directory: "images"
-- path: ../images/I2C2.PNG
+- path: ../images/I2C2.png
   directory: "images"
 - path: ../images/ind_climate.jpg
   directory: "images"
-- path: ../images/memlcd_spi.PNG
+- path: ../images/log.png
+  directory: "images"
+- path: ../images/memlcd_spi.png
   directory: "images"
 - path: ../images/out_climate.jpg
   directory: "images"
-- path: ../images/si70xx.PNG
+- path: ../images/si70xx.png
   directory: "images"
-- path: ../images/sleep_timer_91x.PNG
+- path: ../images/sleep_timer_91x.png
   directory: "images"
-- path: ../images/sntp_client.PNG
+- path: ../images/sntp_client.png
   directory: "images"
-- path: ../images/ssi.PNG
+- path: ../images/ssi.png
   directory: "images"
-- path: ../images/subscribe_api_weather.PNG
+- path: ../images/subscribe_api_weather.png
   directory: "images"
-- path: ../images/subsrcibe_api_AQI.PNG
+- path: ../images/subsrcibe_api_AQI.png
   directory: "images"
 - path: ../images/system_overview.png
   directory: "images"
-- path: ../images/tera_term.PNG
+- path: ../images/tera_term.png
   directory: "images"
 - path: ../images/time.jpg
   directory: "images"
-- path: ../images/timer.PNG
+- path: ../images/timer.png
   directory: "images"
-- path: ../images/timer0_instance.PNG
+- path: ../images/timer0_instance.png
   directory: "images"
 - path: ../images/w_report.jpg
   directory: "images"
 
   
 define:
-- {name: SL_SI91X_PRINT_DBG_LOG}
-
+- name: SL_SI91X_PRINT_DBG_LOG
+- name: APP_ENABLE_DISPLAY_DATA
+  value: "1"
+  condition:
+    - brd4338a
+    
 requires:
 - {name: sl_system}
 - {name: http_client}
@@ -166,7 +186,7 @@ ui_hints:
   - {path: README.md, focus: true}
 
 sdk_extension:
-- {id: wiseconnect3_sdk, version: 3.3.4}
+- {id: wiseconnect3_sdk, version: 3.4.0}
 
 post_build: 
   path: wifi_weather_display.slpb

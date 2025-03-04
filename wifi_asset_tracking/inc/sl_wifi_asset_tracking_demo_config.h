@@ -36,9 +36,9 @@ extern "C" {
  * Default : 60 seconds
  */
 #define DEMO_CONFIG_WIFI_SAMPLING_INTERVAL                            60
-#if (DEMO_CONFIG_WIFI_SAMPLING_INTERVAL < MIN_LIMIT_OF_WIFI_SAMPLING_INTERVAL \
-     || DEMO_CONFIG_WIFI_SAMPLING_INTERVAL                                    \
-     > MAX_LIMIT_OF_WIFI_SAMPLING_INTERVAL)
+#if (DEMO_CONFIG_WIFI_SAMPLING_INTERVAL < MIN_LIMIT_OF_WIFI_SAMPLING_INTERVAL   \
+                                          || DEMO_CONFIG_WIFI_SAMPLING_INTERVAL \
+                                          > MAX_LIMIT_OF_WIFI_SAMPLING_INTERVAL)
 #error Invalid sampling interval of wi-fi. It should be within specified range.
 #endif
 
@@ -49,9 +49,9 @@ extern "C" {
  * Default : 5 seconds
  */
 #define DEMO_CONFIG_TEMP_RH_SENSOR_SAMPLING_INTERVAL                  5
-#if (DEMO_CONFIG_TEMP_RH_SENSOR_SAMPLING_INTERVAL    \
-     < MIN_LIMIT_OF_TEMP_RH_SENSOR_SAMPLING_INTERVAL \
-     || DEMO_CONFIG_TEMP_RH_SENSOR_SAMPLING_INTERVAL \
+#if (DEMO_CONFIG_TEMP_RH_SENSOR_SAMPLING_INTERVAL      \
+     < MIN_LIMIT_OF_TEMP_RH_SENSOR_SAMPLING_INTERVAL   \
+       || DEMO_CONFIG_TEMP_RH_SENSOR_SAMPLING_INTERVAL \
      > MAX_LIMIT_OF_TEMP_RH_SENSOR_SAMPLING_INTERVAL)
 #error \
   Invalid sampling interval of temperature and RH sensor. It should be within specified range.
@@ -64,9 +64,9 @@ extern "C" {
  * Default : 1 second
  */
 #define DEMO_CONFIG_IMU_SENSOR_SAMPLING_INTERVAL                      1
-#if (DEMO_CONFIG_IMU_SENSOR_SAMPLING_INTERVAL    \
-     < MIN_LIMIT_OF_IMU_SENSOR_SAMPLING_INTERVAL \
-     || DEMO_CONFIG_IMU_SENSOR_SAMPLING_INTERVAL \
+#if (DEMO_CONFIG_IMU_SENSOR_SAMPLING_INTERVAL      \
+     < MIN_LIMIT_OF_IMU_SENSOR_SAMPLING_INTERVAL   \
+       || DEMO_CONFIG_IMU_SENSOR_SAMPLING_INTERVAL \
      > MAX_LIMIT_OF_IMU_SENSOR_SAMPLING_INTERVAL)
 #error \
   Invalid sampling interval of imu sensor. It should be within specified range.
@@ -79,9 +79,9 @@ extern "C" {
  * Default : 60 seconds
  */
 #define DEMO_CONFIG_GNSS_RECEIVER_SAMPLING_INTERVAL                   60
-#if (DEMO_CONFIG_GNSS_RECEIVER_SAMPLING_INTERVAL    \
-     < MIN_LIMIT_OF_GNSS_RECEIVER_SAMPLING_INTERVAL \
-     || DEMO_CONFIG_GNSS_RECEIVER_SAMPLING_INTERVAL \
+#if (DEMO_CONFIG_GNSS_RECEIVER_SAMPLING_INTERVAL      \
+     < MIN_LIMIT_OF_GNSS_RECEIVER_SAMPLING_INTERVAL   \
+       || DEMO_CONFIG_GNSS_RECEIVER_SAMPLING_INTERVAL \
      > MAX_LIMIT_OF_GNSS_RECEIVER_SAMPLING_INTERVAL)
 #error \
   Invalid sampling interval of gnss receiver. It should be within specified range.

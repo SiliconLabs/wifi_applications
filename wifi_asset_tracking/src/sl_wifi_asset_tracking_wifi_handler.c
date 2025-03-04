@@ -465,7 +465,8 @@ static sl_status_t sl_convert_ntp_to_calendar_time_format(
   char *ntp_time_buff)
 {
   uint8_t index = 0;
-  char token_str_arr[MAX_NTP_TIME_BUFFER_TOKENS][MAX_NTP_TIME_BUFFER_TOKEN_SIZE]; /// Variable to store token string
+  /// Variable to store token string
+  char token_str_arr[MAX_NTP_TIME_BUFFER_TOKENS][MAX_NTP_TIME_BUFFER_TOKEN_SIZE];
   char *token_str;
 
   if ((NULL == ntp_time_buff) || (NULL == cal_data)) {
@@ -645,9 +646,9 @@ static sl_status_t sl_init_rtc_calendar(sl_cal_date_time_type_t *cal_data)
 }
 
 /******************************************************************************
-* Function will setup SNTP and fetch date and time in UTC format from
-* network and configure calendar RTC using fetched data.
-******************************************************************************/
+ * Function will setup SNTP and fetch date and time in UTC format from
+ * network and configure calendar RTC using fetched data.
+ ******************************************************************************/
 sl_status_t sl_set_time_and_date_using_sntp()
 {
   sl_status_t status;
@@ -656,10 +657,10 @@ sl_status_t sl_set_time_and_date_using_sntp()
   uint8_t data[SNTP_DATA_BUFFER_LENGTH] = { 0 };
   sl_cal_date_time_type_t cal_data;
 
-  status = sl_net_host_get_by_name(NTP_SERVER_IP,
-                                   10000,
-                                   SL_NET_DNS_TYPE_IPV4,
-                                   &address);
+  status = sl_net_dns_resolve_hostname(NTP_SERVER_IP,
+                                       10000,
+                                       SL_NET_DNS_TYPE_IPV4,
+                                       &address);
 
   if (SL_STATUS_OK == status) {
     printf("\r\nsl_set_time_and_date_using_sntp : IP address : %u.%u.%u.%u\r\n",
@@ -759,9 +760,9 @@ sl_status_t sl_set_time_and_date_using_sntp()
 }
 
 /******************************************************************************
-* Function will retry for Wi-Fi connection with configured SSID for five times
-* at every five seconds.
-******************************************************************************/
+ * Function will retry for Wi-Fi connection with configured SSID for five times
+ * at every five seconds.
+ ******************************************************************************/
 sl_status_t sl_deinit_wifi_connection()
 {
   sl_status_t status = SL_STATUS_OK;
@@ -788,9 +789,9 @@ sl_status_t sl_deinit_wifi_connection()
 }
 
 /******************************************************************************
-* Function will retry for Wi-Fi connection with configured SSID for five times
-* at every five seconds.
-******************************************************************************/
+ * Function will retry for Wi-Fi connection with configured SSID for five times
+ * at every five seconds.
+ ******************************************************************************/
 sl_status_t sl_retry_wifi_connection(bool init)
 {
   uint8_t wifi_retry;
@@ -863,8 +864,8 @@ sl_status_t sl_retry_wifi_connection(bool init)
 }
 
 /******************************************************************************
-* Function will fetch current RSSI value using SL_WIFI_CLIENT_INTERFACE.
-******************************************************************************/
+ * Function will fetch current RSSI value using SL_WIFI_CLIENT_INTERFACE.
+ ******************************************************************************/
 sl_status_t sl_get_wifi_rssi(int32_t *rssi)
 {
   sl_status_t status;
@@ -883,9 +884,9 @@ sl_status_t sl_get_wifi_rssi(int32_t *rssi)
 }
 
 /******************************************************************************
-* Function will fetch MAC address using SL_WIFI_CLIENT_INTERFACE and convert
-* into string format.
-******************************************************************************/
+ * Function will fetch MAC address using SL_WIFI_CLIENT_INTERFACE and convert
+ * into string format.
+ ******************************************************************************/
 sl_status_t sl_get_wifi_mac_address(uint8_t *mac_addr)
 {
   sl_mac_address_t mac_address;

@@ -102,10 +102,10 @@ sl_status_t SNTP_client_init(void)
   status = sl_net_set_dns_server(SL_NET_WIFI_CLIENT_INTERFACE, &dns_address);
 
   do {
-    status = sl_net_host_get_by_name(NTP_SERVER_IP,
-                                     DNS_TIMEOUT,
-                                     SL_NET_DNS_TYPE_IPV4,
-                                     &address);
+    status = sl_net_dns_resolve_hostname(NTP_SERVER_IP,
+                                         DNS_TIMEOUT,
+                                         SL_NET_DNS_TYPE_IPV4,
+                                         &address);
     dns_retry_count--;
   } while ((dns_retry_count != 0) && (status != SL_STATUS_OK));
 
@@ -393,7 +393,7 @@ const char * get_month_name(RTC_MONTH_T month)
 // Function to print the Date and Time information
 void calendar_print_datetime(sl_calendar_datetime_config_t data)
 {
-  printf("\n***Calendar time****\r\n");
+  printf("***Calendar time****\r\n");
   printf("Time Format: hour:%d, min:%d, sec:%d, msec:%d\r\n",
          data.Hour,
          data.Minute,

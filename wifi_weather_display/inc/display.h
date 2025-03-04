@@ -50,17 +50,6 @@
 #define SL_BOARD_ENABLE_DISPLAY_PIN  0
 #define SL_BOARD_ENABLE_DISPLAY_PORT 0
 
-typedef enum DISPLAY_STATE
-{
-  INITIALIZATION = 0u,
-  DISP_TIME = 1u,
-  DISP_DATE = 2u,
-  DISP_OUTDOOR_CLIMATE = 3u,
-  DISP_INDOOR_CLIMATE = 4u,
-  DISP_WEATHER_REPORT = 5u,
-  DISP_AQI_REPORT = 6u,
-} DISPLAY_STATE_T;
-
 // Initialize the MEMLCD
 sl_status_t sl_display_init(GLIB_Context_t *glibContextText,
                             GLIB_Context_t *glibContextNumbers);

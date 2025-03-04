@@ -122,11 +122,11 @@ sl_status_t sl_retry_azure_cloud_connection();
 sl_status_t sl_load_ssl_certificates();
 
 /******************************************************************************
-* @brief Function is used to create TLS transport for Azure IoT Hub connection.
-* @return The following values are returned:
-* -  \ref SL_STATUS_OK on success
-* -  \ref SL_STATUS_FAIL - on TLS connection creation failed
-******************************************************************************/
+ * @brief Function is used to create TLS transport for Azure IoT Hub connection.
+ * @return The following values are returned:
+ * -  \ref SL_STATUS_OK on success
+ * -  \ref SL_STATUS_FAIL - on TLS connection creation failed
+ ******************************************************************************/
 sl_status_t sl_create_tls_client_connection();
 
 /**************************************************************************/ /**

@@ -31,8 +31,8 @@
 #include "sl_owmhttp.h"
 
 /******************************************************
-*                    Constants
-******************************************************/
+ *                    Constants
+ ******************************************************/
 //! HTTP Client Configurations
 #define HTTP_CLIENT_USERNAME   "admin"
 #define HTTP_CLIENT_PASSWORD   "admin"
@@ -100,8 +100,8 @@
 sl_status_t callback_status = SL_STATUS_OK;
 
 /******************************************************
-*                      Macros
-******************************************************/
+ *                      Macros
+ ******************************************************/
 #define CLEAN_HTTP_CLIENT_IF_FAILED(status, client_handle, is_sync) \
   {                                                                 \
     if (status != SL_STATUS_OK)                                     \
@@ -123,10 +123,10 @@ sl_status_t sl_resolve_IP(char *hostname, uint8_t *server_ip)
   do
   {
     //! Getting IP address of the remote server using DNS request
-    status = sl_net_host_get_by_name((const char *)hostname,
-                                     DNS_TIMEOUT,
-                                     SL_NET_DNS_TYPE_IPV4,
-                                     &dns_query_rsp);
+    status = sl_net_dns_resolve_hostname((const char *)hostname,
+                                         DNS_TIMEOUT,
+                                         SL_NET_DNS_TYPE_IPV4,
+                                         &dns_query_rsp);
     dns_retry_count--;
   } while ((dns_retry_count != 0) && (status != SL_STATUS_OK));
 
@@ -142,7 +142,7 @@ sl_status_t sl_resolve_IP(char *hostname, uint8_t *server_ip)
           (server_address & 0x00ff0000) >> 16,
           (server_address & 0xff000000) >> 24);
 
-  printf("\r\nServer IP address = %s\r\n", server_ip);
+  printf("Server IP address = %s\r\n", server_ip);
 
   return status;
 }
@@ -196,10 +196,10 @@ sl_status_t sl_http_client_begin(uint8_t *server_ip,
                           sizeof(cacert) - 1);
   if (status != SL_STATUS_OK) {
     printf(
-      "\r\nLoading TLS CA certificate in to FLASH Failed, Error Code : 0x%lX\r\n",
+      "Loading TLS CA certificate in to FLASH Failed, Error Code : 0x%lX\r\n",
       status);
   }
-  printf("\r\nLoad TLS CA certificate at index %d Success\r\n",
+  printf("Load TLS CA certificate at index %d Success\r\n",
          CERTIFICATE_INDEX);
 #endif
 
@@ -249,7 +249,7 @@ sl_status_t sl_http_client_begin(uint8_t *server_ip,
 
   status = sl_http_client_init(&client_configuration, &client_handle);
   VERIFY_STATUS_AND_RETURN(status);
-  printf("\r\nHTTP Client init success\r\n");
+  printf("HTTP Client init success\r\n");
 
 #if EXTENDED_HEADER_ENABLE
   //! Add extended headers
@@ -284,7 +284,7 @@ sl_status_t sl_http_client_begin(uint8_t *server_ip,
     CLEAN_HTTP_CLIENT_IF_FAILED(status, &client_handle, HTTP_SYNC_RESPONSE);
   }
 
-  printf("\r\nHTTP GET request Success\r\n");
+  printf("HTTP GET request Success\r\n");
 
   status = sl_http_client_deinit(&client_handle);
   VERIFY_STATUS_AND_RETURN(status);

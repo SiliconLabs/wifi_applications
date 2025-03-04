@@ -95,8 +95,5 @@ sl_status_t WiFi_deinit(void)
 {
   sl_status_t status = SL_STATUS_OK;
   status = sl_net_deinit(SL_NET_WIFI_CLIENT_INTERFACE);
-  if (status != SL_STATUS_OK) {
-    return status;
-  }
   return status;
 }

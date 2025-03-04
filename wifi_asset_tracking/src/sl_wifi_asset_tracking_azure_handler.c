@@ -425,8 +425,8 @@ uint32_t sl_create_crypto_hmac(const uint8_t *pucKey,
 }
 
 /******************************************************************************
-* Function will create properties for tele-metry messages
-******************************************************************************/
+ * Function will create properties for tele-metry messages
+ ******************************************************************************/
 sl_status_t sl_create_telemetry_message_properties()
 {
   AzureIoTResult_t azure_iot_status;
@@ -480,9 +480,9 @@ sl_status_t sl_create_telemetry_message_properties()
 }
 
 /******************************************************************************
-* Function will retry for Azure cloud connection with configured
-* authentication method for five times at every five seconds.
-******************************************************************************/
+ * Function will retry for Azure cloud connection with configured
+ * authentication method for five times at every five seconds.
+ ******************************************************************************/
 sl_status_t sl_retry_azure_cloud_connection()
 {
   uint8_t retry_cnt;
@@ -531,8 +531,8 @@ sl_status_t sl_retry_azure_cloud_connection()
 }
 
 /******************************************************************************
-* Function is used to load SSL certificates based on authentication method.
-******************************************************************************/
+ * Function is used to load SSL certificates based on authentication method.
+ ******************************************************************************/
 sl_status_t sl_load_ssl_certificates()
 {
   sl_status_t status;
@@ -624,8 +624,8 @@ sl_status_t sl_load_ssl_certificates()
 }
 
 /******************************************************************************
-* Function is used to create TLS transport for Azure IoT Hub connection.
-******************************************************************************/
+ * Function is used to create TLS transport for Azure IoT Hub connection.
+ ******************************************************************************/
 sl_status_t sl_create_tls_client_connection(void)
 {
   sl_status_t status;
@@ -638,7 +638,7 @@ sl_status_t sl_create_tls_client_connection(void)
 
   /// DNS query to resolve Azure IoT Hub host name
   do {
-    status = sl_net_host_get_by_name(
+    status = sl_net_dns_resolve_hostname(
       (const char *)DEMO_CONFIG_IOT_HUB_HOST_NAME,
       DNS_TIMEOUT,
       SL_NET_DNS_TYPE_IPV4,
@@ -725,8 +725,8 @@ sl_status_t sl_create_tls_client_connection(void)
 }
 
 /******************************************************************************
-* Callback function used to receive data from TLS socket connection.
-******************************************************************************/
+ * Callback function used to receive data from TLS socket connection.
+ ******************************************************************************/
 int32_t sl_tls_sock_recv(NetworkContext_t *network_context,
                          void *buffer,
                          size_t bytes_to_recv)
@@ -754,8 +754,8 @@ int32_t sl_tls_sock_recv(NetworkContext_t *network_context,
 }
 
 /******************************************************************************
-* Callback function used to send data on TLS socket connection.
-******************************************************************************/
+ * Callback function used to send data on TLS socket connection.
+ ******************************************************************************/
 int32_t sl_tls_sock_send(NetworkContext_t *network_context,
                          const void *buffer,
                          size_t bytes_to_send)
@@ -773,8 +773,8 @@ int32_t sl_tls_sock_send(NetworkContext_t *network_context,
 }
 
 /******************************************************************************
-* Function used to disconnect Azure IoT Hub connection and clean up TLS socket.
-******************************************************************************/
+ * Function used to disconnect Azure IoT Hub connection and clean up TLS socket.
+ ******************************************************************************/
 sl_status_t sl_disconnect_azure_iot_hub()
 {
   /// Disconnect Azure IoT Hub Connection

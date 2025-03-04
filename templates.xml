@@ -6,8 +6,8 @@
     <properties key="solutionReferenceId" value="wifi_asset_tracking.SimplicityStudio.wifi_asset_tracking.slcp"/>
     <properties key="projectFilePaths" value="wifi_asset_tracking/SimplicityStudio/wifi_asset_tracking.slcp"/>
     <properties key="readmeFiles" value="wifi_asset_tracking/README.md"/>
-    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
-    <properties key="partCompatibility" value=".*si917.* .*siwg917m111mgtba.*"/>
+    <properties key="boardCompatibility" value="brd4338a brd2605a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*si917.* .*siwg917m111.*"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide simplicity-ide visual-studio-code"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
     <properties key="toolchainCompatibility" value="gcc iar segger"/>
@@ -23,8 +23,8 @@
     <properties key="solutionReferenceId" value="wifi_weather_display.SimplicityStudio.wifi_weather_display.slcp"/>
     <properties key="projectFilePaths" value="wifi_weather_display/SimplicityStudio/wifi_weather_display.slcp"/>
     <properties key="readmeFiles" value="wifi_weather_display/README.md"/>
-    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
-    <properties key="partCompatibility" value=".*si917.* .*siwg917m111mgtba.*"/>
+    <properties key="boardCompatibility" value="brd4338a brd2605a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*siwg917m111.*"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide simplicity-ide visual-studio-code"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
     <properties key="toolchainCompatibility" value="gcc iar segger"/>

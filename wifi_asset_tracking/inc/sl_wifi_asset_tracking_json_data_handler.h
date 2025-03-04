@@ -139,11 +139,11 @@ sl_status_t sl_convert_si7021_reading_to_json_format(
 void sl_json_data_converter_task();
 
 /**************************************************************************/ /**
-* @brief Function to send new session JSON message to MQTT package queue.
-* @return The following values are returned:
-* -  \ref SL_STATUS_OK on success
-* -  \ref SL_STATUS_FAIL - on keep alive message sending failure.
-*******************************************************************************/
+ * @brief Function to send new session JSON message to MQTT package queue.
+ * @return The following values are returned:
+ * -  \ref SL_STATUS_OK on success
+ * -  \ref SL_STATUS_FAIL - on keep alive message sending failure.
+ *******************************************************************************/
 sl_status_t sl_json_send_new_session_message();
 
 /**************************************************************************/ /**

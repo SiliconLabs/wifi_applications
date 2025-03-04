@@ -18,6 +18,17 @@
 #ifndef APP_H
 #define APP_H
 
+typedef enum DISPLAY_STATE
+{
+  INITIALIZATION = 0u,
+  DISP_TIME = 1u,
+  DISP_DATE = 2u,
+  DISP_OUTDOOR_CLIMATE = 3u,
+  DISP_INDOOR_CLIMATE = 4u,
+  DISP_WEATHER_REPORT = 5u,
+  DISP_AQI_REPORT = 6u,
+} DISPLAY_STATE_T;
+
 /***************************************************************************/ /**
  * Initialize application.
  ******************************************************************************/

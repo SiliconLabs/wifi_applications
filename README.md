@@ -14,10 +14,10 @@
 # Silicon Labs Wi-Fi Applications #
 
 
-[![Version Badge](https://img.shields.io/badge/-v1.1.0-green)](https://github.com/SiliconLabs/wifi_applications/releases)
-[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.4.3-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
-[![WSDK Badge](https://img.shields.io/badge/WSDK-v3.2.0-green)](https://github.com/SiliconLabs/wiseconnect/releases)
-[![TPHD Version Badge](https://img.shields.io/badge/TPHD-v3.0.1+-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![Version Badge](https://img.shields.io/badge/-v2.0.0-green)](https://github.com/SiliconLabs/wifi_applications/releases)
+[![SiSDK Badge](https://img.shields.io/badge/SiSDK-v2024.12.0-green)](https://github.com/SiliconLabs/simplicity_sdk/releases)
+[![WSDK Badge](https://img.shields.io/badge/WSDK-v3.4.0-green)](https://github.com/SiliconLabs/wiseconnect/releases)
+[![TPHD Version Badge](https://img.shields.io/badge/TPHD-v4.1.0+-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
 The Silicon Labs Wi-Fi allows for a wide variety applications to be built on its foundation. This repo showcases some example applications using the Silicon Labs Wi-Fi.
@@ -37,7 +37,7 @@ This repository provides SLCP projects (as External Repositories).
 
 1. Silicon Labs SiWx91x development kit
 2. Simplicity Studio 5
-3. Compatible GSDK version that specified in each project's readme file. You can install it via Simplicity Studio or download it from our GitHub [gecko_sdk](https://github.com/SiliconLabs/gecko_sdk)
+3. Compatible SDK version that specified in each project's readme file. You can install it via Simplicity Studio or download it from our GitHub [simplicity sdk](https://github.com/SiliconLabs/simplicity_sdk)
 4. Compatible WiSeConnect SDK version that specified in each project's readme file. You can install it via Simplicity Studio or download it from our GitHub [wiseconnect_sdk](https://github.com/SiliconLabs/wiseconnect)
 5. Compatible Third-Party Hardware Drivers extension that also specified in each project's readme file, available [here](https://github.com/SiliconLabs/third_party_hw_drivers_extension)
 

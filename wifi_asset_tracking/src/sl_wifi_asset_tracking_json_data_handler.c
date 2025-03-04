@@ -830,8 +830,8 @@ void sl_json_data_converter_task()
 }
 
 /******************************************************************************
-* Function to send new session JSON message to MQTT package queue.
-******************************************************************************/
+ * Function to send new session JSON message to MQTT package queue.
+ ******************************************************************************/
 sl_status_t sl_json_send_new_session_message()
 {
   sl_wifi_asset_tracking_mqtt_package_queue_data_t new_session_message;

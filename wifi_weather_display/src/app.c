@@ -27,6 +27,7 @@
  * 3. This notice may not be removed or altered from any source distribution.
  *
  ******************************************************************************/
+#include "app.h"
 #include "sl_board_configuration.h"
 #include "cmsis_os2.h"
 #include "sl_wifi.h"
@@ -40,20 +41,17 @@
 #include "sl_net_default_values.h"
 #include "sl_utility.h"
 #include "sl_si91x_driver.h"
-
 #include "sl_owmhttp.h"
-
 #include "WiFi.h"
-
 #include "sl_wd_ntp.h"
-
 #include "sensor.h"
-
-#include "display.h"
-
 #include "sl_si91x_button.h"
 #include "sl_si91x_button_pin_config.h"
 #include "sl_si91x_button_instances.h"
+
+#if (APP_ENABLE_DISPLAY_DATA == 1)
+#include "display.h"
+#endif
 
 // Button 0 instance
 #define BUTTON_INSTANCE0    button_btn0
@@ -109,10 +107,11 @@ aqi_data_t aqi_data;
 weather_data_t weather_data;
 sl_calendar_datetime_config_t datetime_config;
 
+#if (APP_ENABLE_DISPLAY_DATA == 1)
 GLIB_Context_t glibContextText, glibContextNumbers;
+#endif
 
 uint8_t disp_state = 0;
-
 bool wifi_connected = false;
 
 osEventFlagsId_t update_evt_id;
@@ -127,8 +126,8 @@ const osTimerAttr_t update_timer = {
 };
 
 /******************************************************
-*          Callback Function Definitions
-******************************************************/
+ *          Callback Function Definitions
+ ******************************************************/
 // Timer callback function
 void update_timer_callback()
 {
@@ -138,19 +137,17 @@ void update_timer_callback()
 // Button press ISR
 void sl_si91x_button_isr(uint8_t pin, int8_t state)
 {
-  if (pin == BUTTON_INSTANCE0.pin) {
-    if (state == BUTTON_PRESSED) {
-      disp_state++;
-      if (disp_state > DISP_AQI_REPORT) {
-        disp_state = DISP_TIME;
-      }
+  if ((pin == BUTTON_INSTANCE0.pin) && (state == BUTTON_PRESSED)) {
+    disp_state++;
+    if (disp_state > DISP_AQI_REPORT) {
+      disp_state = DISP_TIME;
     }
   }
 }
 
 /******************************************************
-*               Variable Definitions
-******************************************************/
+ *               Variable Definitions
+ ******************************************************/
 const osThreadAttr_t deviceInit_thread_attributes = {
   .name = "deviceInit",
   .attr_bits = 0,
@@ -188,8 +185,8 @@ const osThreadAttr_t update_thread_attributes = {
 };
 
 /******************************************************
-*               Function Declarations
-******************************************************/
+ *               Function Declarations
+ ******************************************************/
 static void device_init(void *argument);
 
 static void app_process(void *argument);
@@ -205,11 +202,10 @@ static void acquire_dateTime();
 static void acquire_aqiData();
 
 /******************************************************
-*               Function Definitions
-******************************************************/
-void app_init(const void *unused)
+ *               Function Definitions
+ ******************************************************/
+void app_init(void)
 {
-  UNUSED_PARAMETER(unused);
   osThreadNew((osThreadFunc_t)device_init, NULL, &deviceInit_thread_attributes);
 
   osThreadNew((osThreadFunc_t)data_update, NULL, &update_thread_attributes);
@@ -229,13 +225,13 @@ static void device_init(void *argument)
   if (status != SL_STATUS_OK) {
     printf("Failed to bring Wi-Fi client interface up: 0x%lx\r\n", status);
   } else {
-    printf("\r\nWiFi Client Interface Initialized\r\n");
+    printf("WiFi Client Interface Initialized\r\n");
     wifi_connected = true;
   }
 
   status = sl_resolve_IP(hostname, server_ip);
   if (status != SL_STATUS_OK) {
-    printf("\r\nUnexpected error while resolving dns, Error 0x%lX\r\n", status);
+    printf("Unexpected error while resolving dns, Error 0x%lX\r\n", status);
   }
 
   // Acquire the Weather Data
@@ -254,11 +250,14 @@ static void device_init(void *argument)
   if (status != SL_STATUS_OK) {
     printf("Failed to Deinit Wi-Fi client interface up: 0x%lx\r\n", status);
   } else {
-    printf("\r\nWiFi Client Interface De-initialized\r\n");
+    printf("WiFi Client Interface De-initialized\r\n");
     wifi_connected = false;
   }
 
+#if (APP_ENABLE_DISPLAY_DATA == 1)
   status = sl_display_init(&glibContextText, &glibContextNumbers);
+#endif
+
   if (status != SL_STATUS_OK) {
     printf("Failed to initialize the display\r\n");
   }
@@ -304,7 +303,14 @@ static void app_process(void *argument)
           status);
       }
 
+#if (APP_ENABLE_DISPLAY_DATA == 1)
       sl_display_time(&glibContextText, &glibContextNumbers, &datetime_config);
+#else
+      printf("Time: %.2d:%.2d:%.2d\r\n",
+             datetime_config.Hour,
+             datetime_config.Minute,
+             datetime_config.Second);
+#endif
     } else if (disp_state == DISP_DATE) {
       status = sl_si91x_calendar_get_date_time(&datetime_config);
       if (status != SL_STATUS_OK) {
@@ -313,11 +319,23 @@ static void app_process(void *argument)
           status);
       }
 
+#if (APP_ENABLE_DISPLAY_DATA == 1)
       sl_display_date(&glibContextText, &glibContextNumbers, &datetime_config);
+#else
+      printf("Date: %.2d:%.2d:%.2d\r\n",
+             datetime_config.Day,
+             datetime_config.Month,
+             datetime_config.Year);
+#endif
     } else if (disp_state == DISP_OUTDOOR_CLIMATE) {
+#if (APP_ENABLE_DISPLAY_DATA == 1)
       sl_display_outdoorClimate(&glibContextText,
                                 &glibContextNumbers,
                                 &weather_data);
+#else
+      printf("Outdoor Climate: Temperature = %.2d, Humidity =  %.2d\r\n",
+             (uint16_t)weather_data.temp, (uint16_t)weather_data.humidity);
+#endif
     } else if (disp_state == DISP_INDOOR_CLIMATE) {
       status = sl_si91x_si70xx_measure_rh_and_temp(i2c_instance,
                                                    i2c_address,
@@ -327,15 +345,44 @@ static void app_process(void *argument)
         printf("Sensor temperature read failed, Error Code: 0x%ld \n", status);
       }
 
+#if (APP_ENABLE_DISPLAY_DATA == 1)
       sl_display_indoorClimate(&glibContextText,
                                &glibContextNumbers,
                                &weather_data);
+#else
+      printf("Indoor Climate: Temperature = %.2d, Humidity =  %.2d\r\n",
+             (uint16_t)weather_data.local_temperature,
+             (uint16_t)weather_data.local_humidity);
+#endif
     } else if (disp_state == DISP_WEATHER_REPORT) {
+#if (APP_ENABLE_DISPLAY_DATA == 1)
       sl_display_weatherReport(&glibContextText,
                                &glibContextNumbers,
                                &weather_data);
+#else
+      printf("-------------------------------------\r\n");
+      printf("Weather Report:\r\n");
+      printf("Temperature: %.1f°C\r\n", weather_data.temp);
+      printf("Feels Like: %.1f°C\r\n", weather_data.feels_like);
+      printf("Humidity: %d%%\r\n", weather_data.humidity);
+      printf("Rain(1h): %.1fmm\r\n", weather_data.rain);
+      printf("-------------------------------------\r\n");
+#endif
     } else if (disp_state == DISP_AQI_REPORT) {
+#if (APP_ENABLE_DISPLAY_DATA == 1)
       sl_display_aqiReport(&glibContextText, &glibContextNumbers, &aqi_data);
+#else
+
+      printf("-------------------------------------\r\n");
+      printf("AQI Report:\r\n");
+      printf("AQI: %s\r\n", get_aqi_category(aqi_data.aqi));
+      printf("Ozone(O3): %.1f\r\n", aqi_data.ozone);
+      printf("PM2.5: %.1f\r\n", aqi_data.pm2_5);
+      printf("PM10: %.1f\r\n", aqi_data.pm10);
+      printf("CO: %.1f\r\n", aqi_data.co);
+      printf("-------------------------------------\r\n");
+
+#endif
     }
 
     osDelay(1000);
@@ -350,18 +397,14 @@ static void data_update(void *argument)
   while (1)
   {
     osEventFlagsWait(update_evt_id, 0x00000001U, osFlagsWaitAny, osWaitForever);
-
-    printf("\r\n Performing data update\r\n");
+    printf(" Performing data update\r\n");
 
     if (!wifi_connected) {
       status = WiFi_init();
-
       if (status != SL_STATUS_OK) {
         printf("WiFi init failed %lX \r\n ", status);
-        osEventFlagsClear(update_evt_id, 0x00000001U);
       } else {
-        printf("\r\nWi-Fi Client Connected\r\n");
-
+        printf("Wi-Fi Client Connected\r\n");
         wifi_connected = true;
 
         osDelay(1000);
@@ -374,7 +417,7 @@ static void data_update(void *argument)
         if (status != SL_STATUS_OK) {
           printf("WiFi deinit failed\r\n");
         } else {
-          printf("\r\nWi-Fi Client Disconnected\r\n");
+          printf("Wi-Fi Client Disconnected\r\n");
           wifi_connected = false;
         }
       }
@@ -400,7 +443,7 @@ sl_status_t http_get_response_callback_handler(const sl_http_client_t *client,
   sl_http_client_response_t *get_response = (sl_http_client_response_t *)data;
 
   // Uncomment for debugging the HTTP response
-  //  printf("\r\n===========HTTP GET RESPONSE START===========\r\n");
+  //  printf("===========HTTP GET RESPONSE START===========\r\n");
   //  printf(
   //    "\r\n> Status: 0x%ld\n> GET response: %u\n> End of data: %lu\n> Data Length: %u\n> Request Context: %s\r\n",
   //    get_response->status,
@@ -427,7 +470,7 @@ sl_status_t http_get_response_callback_handler(const sl_http_client_t *client,
   }
 
   // Uncomment for debugging
-  //  printf("\r\nGET Data response:\n%s \nOffset: %ld\r\n", app_buffer, app_buff_index);
+  //  printf("GET Data response:\n%s \nOffset: %ld\r\n", app_buffer, app_buff_index);
   if (get_response->end_of_data == 1) {
     app_buff_index = 0;
     http_rsp_received = HTTP_SUCCESS_RESPONSE;
@@ -436,11 +479,11 @@ sl_status_t http_get_response_callback_handler(const sl_http_client_t *client,
   return SL_STATUS_OK;
 }
 
-void acquire_weatherData()
+static void acquire_weatherData()
 {
   sl_status_t status = SL_STATUS_OK;
 
-  printf("\r\nAcquiring Weather Data\r\n");
+  printf("Acquiring Weather Data\r\n");
 
   // clearing app_buffer data if any
   memset(app_buffer, 0, sizeof(app_buffer)); // Clear buffer data
@@ -449,7 +492,7 @@ void acquire_weatherData()
 
   status = sl_http_client_begin(server_ip, full_url, &http_rsp_received);
   if (status != SL_STATUS_OK) {
-    printf("\r\nUnexpected error while HTTP client operation: 0x%lX\r\n",
+    printf("Unexpected error while HTTP client operation: 0x%lX\r\n",
            status);
   }
 
@@ -460,7 +503,7 @@ void acquire_aqiData()
 {
   sl_status_t status = SL_STATUS_OK;
 
-  printf("\r\nAcquiring AQI Data\r\n");
+  printf("Acquiring AQI Data\r\n");
 
   // clearing app_buffer data if any
   memset(app_buffer, 0, sizeof(app_buffer)); // Clear buffer data
@@ -469,7 +512,7 @@ void acquire_aqiData()
 
   status = sl_http_client_begin(server_ip, full_url, &http_rsp_received);
   if (status != SL_STATUS_OK) {
-    printf("\r\nUnexpected error while HTTP client operation: 0x%lX\r\n",
+    printf("Unexpected error while HTTP client operation: 0x%lX\r\n",
            status);
   }
 
@@ -480,7 +523,7 @@ void acquire_dateTime()
 {
   sl_status_t status = SL_STATUS_OK;
 
-  printf("\r\nNetwork Date and Time\r\n");
+  printf("Network Date and Time\r\n");
 
   // clearing app_buffer data if any
   memset(app_buffer, 0, sizeof(app_buffer)); // Clear buffer data

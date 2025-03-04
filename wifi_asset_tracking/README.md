@@ -67,15 +67,14 @@ Firmware application consists of three logical modules:
 
     ![application_overview](images/firmware/application_overview.png)
 
+## SDK version ##
+
+SiSDK 2024.12.0
+
 ## Hardware Requirements ##
 
 - A Wireless Access Point
-- SoC Model:
-  - Standalone
-    - [Si-MB4002A - Wireless pro kit mainboard](https://www.silabs.com/development-tools/wireless/wireless-pro-kit-mainboard?tab=overview)
-    - [SiWx917-RB4338A - SiWx917 Wi-Fi 6 and Bluetooth LE SoC 8 MB Flash Radio Board](https://www.silabs.com/development-tools/wireless/wi-fi/siwx917-rb4338a-wifi-6-bluetooth-le-soc-radio-board?tab=overview)
-  - Kits
-    - [SiWx917-PK6031A - SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit](https://www.silabs.com/development-tools/wireless/wi-fi/siwx917-pro-kit?tab=overview)
+- 1x [Wi-Fi Development Kit](https://www.silabs.com/development-tools/wireless/wi-fi) based on SiWG917 (e.g. [SIWX917-DK2605A](https://www.silabs.com/development-tools/wireless/wi-fi/siwx917-dk2605a-wifi-6-bluetooth-le-soc-dev-kit) or [SIWX917-RB4338A](https://www.silabs.com/development-tools/wireless/wi-fi/siwx917-rb4338a-wifi-6-bluetooth-le-soc-radio-board))
 - [SparkFun Humidity and Temperature Sensor Breakout - Si7021](https://www.sparkfun.com/products/13763)
 - [SparkFun GNSS Receiver Breakout - MAX-M10S (Qwiic)](https://www.sparkfun.com/products/18037)
 - [SparkFun 6 Degrees of Freedom Breakout - BMI270 (Qwiic)](https://www.sparkfun.com/products/22397)
@@ -87,17 +86,17 @@ Firmware application consists of three logical modules:
   - Download the [Simplicity Studio v5 IDE](https://www.silabs.com/developers/simplicity-studio)
   - Follow the [Simplicity Studio User Guide](https://docs.silabs.com/simplicity-studio-5-users-guide/1.1.0/ss-5-users-guide-getting-started/install-ss-5-and-software#install-ssv5) to install Simplicity Studio IDE
 - Follow these document to setup your [Azure Cloud](https://github.com/SiliconLabs/wifi_applications/blob/main/wifi_asset_tracking/AZURE.md) and [Dashboard](https://github.com/SiliconLabs/wifi_applications/blob/main/wifi_asset_tracking/dashboard/README.md)
-- [Gecko SDK (GSDK) Version 4.4.3](https://github.com/SiliconLabs/gecko_sdk/releases/tag/v4.4.3)
-- [WiSeConnect 3.2.0 SDK](https://docs.silabs.com/wiseconnect/3.2.0/wiseconnect-developers-guide-developing-for-silabs-hosts/)
-- [Third Party Hardware Drivers Extension V3.0.1](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases/tag/v3.0.1)
+- [Simplicity SDK Version 2024.12.0](https://github.com/SiliconLabs/simplicity_sdk/releases/tag/v2024.12.0)
+- [WiSeConnect 3.4.0 SDK](https://github.com/SiliconLabs/wiseconnect/releases/tag/v3.4.0)
+- [Third Party Hardware Drivers Extension V4.1.0](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases/tags/v4.1.0)
 
 ## Setup ##
 
-### Setup Diagram ###
+### Connections Required ###
 
 Sparkfun Qwiic boards can be easily connected to each other using Qwiic cables. Then connect it all back to the SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit board as shown in the table below:
 
-| Description  | BRD4338A GPIO | BRD4002 EXP Header | SparkFun Qwiic boards |
+| Description  | BRD4338A + BRD2605A  | BRD4002 EXP Header | SparkFun Qwiic boards |
 | -------------| ------------- | ------------------ | ------------------ |
 | I2C_SDA      | ULP_GPIO_6    | EXP_16             | SDA                |
 | I2C_SCL      | ULP_GPIO_7    | EXP_15             | SCL                |
@@ -110,7 +109,7 @@ To test this application, you can either create a project based on an example pr
 
 ### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4338A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project filtering by "asset".
+1. From the Launcher Home, add your board to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project filtering by "asset".
 
 2. Click **Create** button on the **Wi-Fi - Asset Tracking** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
 
@@ -131,7 +130,7 @@ To test this application, you can either create a project based on an example pr
 
 ### Start with a "SL Si91x - Empty C Project SoC" project ###
 
-1. Create a **SL Si91x - Empty C Project SoC** project for BRD4338A using Simplicity Studio 5.
+1. Create a **SL Si91x - Empty C Project SoC** project for the SiWx917 using Simplicity Studio 5.
 
 2. Copy all of source files in "wifi_asset_tracking/src" and header files in "wifi_asset_tracking/inc" to the directory of the project root folder (overwriting the existing files).
 
@@ -149,7 +148,7 @@ To test this application, you can either create a project based on an example pr
         - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [Wireless] → [Buffer Manager] → [Memory Pool Buffers]
         - [WiSeConnect 3 SDK] → [Third Party] → [AZURE FreeRTOS Middleware]
         - [WiSeConnect 3 SDK] → [Service] → [Network Management] → [Configuration] → [Basic Network Configuration Manager]
-        - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [MCU] → [Hardware] → [Memory LCD SPI driver]
+        - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [MCU] → [Hardware] → [Memory LCD SPI driver] (if using the SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit - BRD4338A)
         - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [MCU] → [Peripheral] → [Calendar]
         - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [MCU] → [Hardware] → [Si70xx Humidity and Temperature Sensor]
         - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [Wireless] → [Crypto] → [HMAC]
@@ -158,7 +157,7 @@ To test this application, you can either create a project based on an example pr
         - [WiSeConnect 3 SDK] → [Resources] → [WiSeConnect3 Resources]
         - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [MCU] → [Service] → [Power Manager] → [ULP Peripheral] → [ULP SSI]
         - [Application] → [Utility] → [Assert]
-        - [Platform] → [Driver] → [GLIB Graphics Library]
+        - [Platform] → [Driver] → [GLIB Graphics Library] (if using the SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit - BRD4338A)
         - [RTOS] →  [FreeRTOS] → [FreeRTOS Heap 4]
 
 4. From the project root folder, open file "config/sl_net_default_values.h" change 2 macros "DEFAULT_WIFI_CLIENT_PROFILE_SSID" and "DEFAULT_WIFI_CLIENT_CREDENTIAL" match with your WIFI SSID and WIFI PASSPHRASE
